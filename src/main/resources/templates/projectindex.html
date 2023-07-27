@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Project Dashboard</title>
-  <link rel="stylesheet" type="text/css" href="static/mycss.css">
+  <link rel="stylesheet" type="text/css" href="../static/mycss.css">
 </head>
 <body>
 <h1>Project list</h1>
 
-<a href="/createProject">
+<a href="/createproject">
   <button class="btn-create, btn" id="btn-create">Create a new project</button>
 </a>
 
@@ -29,13 +29,13 @@
     <td th:text="${project.startDate}"/>
     <td th:text="${project.endDate}"/>
     <td>
-      <a th:href="@{'/viewProject/'+${project.id}}">
+      <a th:href="@{'/viewoneproject/'+${project.id}}">
         <button class="btn-viewOne" id="btn-viewOne">View project</button>
       </a>
-      <a th:href="@{'/deleteProject/'+${project.id}}">
+      <a th:href="@{'/deleteproject/'+${project.id}}">
         <button class="btn-deleteOne" id="btn-deleteOne">Delete project</button>
       </a>
-      <a th:href="@{'/updateProject/'+${project.id}}">
+      <a th:href="@{'/updateproject/'+${project.id}}">
         <button class="btn-updateOne" id="btn-updateOne">Update project</button>
       </a>
     </td>

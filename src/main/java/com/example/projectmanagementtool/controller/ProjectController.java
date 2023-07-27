@@ -17,8 +17,8 @@ public class ProjectController {
     @GetMapping("/projectindex")
     public String index(Model model){
         List<Project> projectList = projectService.fetchAll();
-        model.addAttribute("project", projectList);
-        return "/projectindex";
+        model.addAttribute("projects", projectList);
+        return "projectindex";
     }
 
     @GetMapping("/createproject")
@@ -29,34 +29,34 @@ public class ProjectController {
     @PostMapping("/createproject")
     public String createNew(@ModelAttribute Project project){
         projectService.addProject(project);
-        return "redirect:/createproject";
+        return "redirect:/projectindex";
     }
 
-    @GetMapping("/projects/viewOne/{id}")
+    @GetMapping("/viewoneproject/{id}")
     public String viewOne(@PathVariable("id") int id, Model model){
         model.addAttribute("project", projectService.findProjectById(id));
-        return "projects/viewOne";
+        return "viewoneproject";
     }
 
-    @GetMapping("/projects/deleteOne/{id}")
+    @GetMapping("/deleteproject/{id}")
     public String deleteOne(@PathVariable("id") int id){
         boolean deleted = projectService.deleteProject(id);
         if (deleted){
-            return "redirect:/projects";
+            return "redirect:/projectindex";
         }else {
-            return "redirect:/projects";
+            return "redirect:/projectindex";
         }
     }
 
-    @GetMapping("/projects/updateOne/{id}")
+    @GetMapping("/updateproject/{id}")
     public String updateOne(@PathVariable("id") int id, Model model){
         model.addAttribute("project", projectService.findProjectById(id));
-        return "projects/updateOne";
+        return "updateproject";
     }
 
-    @PostMapping("/projects/updateProject")
+    @PostMapping("/updateproject")
     public String updateProject(@ModelAttribute Project project){
         projectService.updateProject(project.getId(), project);
-        return "redirect:/projects";
+        return "redirect:/projectindex";
     }
 }

@@ -14,49 +14,49 @@ public class ResourceController {
     @Autowired
     com.example.projectmanagementtool.services.ResourceService resourceService;
 
-    @GetMapping("/resources")
+    @GetMapping("/resourceindex")
     public String index(Model model){
         List<Resource> resourceList = resourceService.fetchAll();
         model.addAttribute("resources", resourceList);
-        return "resources/index";
+        return "resourceindex";
     }
 
-    @GetMapping("/resources/create")
+    @GetMapping("/createresource")
     public String create(){
-        return "resources/create";
+        return "createresource";
     }
 
-    @PostMapping("/resources/createNew")
+    @PostMapping("/createresource")
     public String createNew(@ModelAttribute Resource resource){
         resourceService.addResource(resource);
-        return "redirect:/resources";
+        return "redirect:/resourceindex";
     }
 
-    @GetMapping("/resources/viewOne/{id}")
+    @GetMapping("/viewoneresource/{id}")
     public String viewOne(@PathVariable("id") int id, Model model){
         model.addAttribute("resource", resourceService.findResourceById(id));
-        return "resources/viewOne";
+        return "viewoneresource";
     }
 
-    @GetMapping("/resources/deleteOne/{id}")
+    @GetMapping("/deleteresource/{id}")
     public String deleteOne(@PathVariable("id") int id){
         boolean deleted = resourceService.deleteResource(id);
         if (deleted){
-            return "redirect:/resources";
+            return "redirect:/resourceindex";
         } else {
-            return "redirect:/resources";
+            return "redirect:/resourceindex";
         }
     }
 
-    @GetMapping("/resources/updateOne/{id}")
+    @GetMapping("/updateresource/{id}")
     public String updateOne(@PathVariable("id") int id, Model model){
         model.addAttribute("resource", resourceService.findResourceById(id));
-        return "resources/updateOne";
+        return "updateresource";
     }
 
-    @PostMapping("/resources/updateResource")
+    @PostMapping("/updateresource")
     public String updateResource(@ModelAttribute Resource resource){
         resourceService.updateResource(resource.getId(), resource);
-        return "redirect:/resources";
+        return "redirect:/resourceindex";
     }
 }

@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <title>Task Dashboard</title>
-  <link rel="stylesheet" type="text/css" href="static/mycss.css">
+  <link rel="stylesheet" type="text/css" href="/mycss.css">
 </head>
 <body>
 <h1>Task list</h1>
 
-<a href="/createTask">
-  <button class="btn-create, btn" id="btn-create">Create a new task</button>
+<a href="/tasks/create">
+  <button class="btn-create" id="btn-create">Create a new task</button>
 </a>
 
 <table>
@@ -19,6 +19,7 @@
     <th>Name</th>
     <th>Start Date</th>
     <th>End Date</th>
+    <th>Estimated Hours</th>
     <th>SubProject Id</th>
     <th>Actions</th>
   </tr>
@@ -29,15 +30,16 @@
     <td th:text="${task.name}"/>
     <td th:text="${task.startDate}"/>
     <td th:text="${task.endDate}"/>
+    <td th:text="${task.estimatedHours}"/>
     <td th:text="${task.subprojectId}"/>
     <td>
-      <a th:href="@{'/viewTask/'+${task.id}}">
+      <a th:href="@{'/tasks/viewOne/'+${task.id}}">
         <button class="btn-viewOne" id="btn-viewOne">View task</button>
       </a>
-      <a th:href="@{'/deleteTask/'+${task.id}}">
+      <a th:href="@{'/tasks/deleteOne/'+${task.id}}">
         <button class="btn-deleteOne" id="btn-deleteOne">Delete task</button>
       </a>
-      <a th:href="@{'/updateTask/'+${task.id}}">
+      <a th:href="@{'/tasks/updateOne/'+${task.id}}">
         <button class="btn-updateOne" id="btn-updateOne">Update task</button>
       </a>
     </td>

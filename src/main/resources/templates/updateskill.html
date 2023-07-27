@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Update Skill</title>
-  <link rel="stylesheet" href="static/mycss.css">
+  <link rel="stylesheet" href="../static/mycss.css">
 </head>
 <body>
 <h1>Update Skill</h1>
 
-<form action="/updateSkill" method="post">
+<form action="/skills/updateSkill" method="post">
   <input type="hidden" name="id" th:value="${skill.id}">
   <input type="text" name="name" th:value="${skill.name}">
   <input type="submit" value="Save changes" class="btn" id="btn-updateOne">

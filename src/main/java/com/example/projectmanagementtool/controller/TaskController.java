@@ -18,12 +18,12 @@ public class TaskController {
     public String index(Model model){
         List<Task> taskList = taskService.fetchAll();
         model.addAttribute("tasks", taskList);
-        return "tasks/index";
+        return "taskindex";
     }
 
     @GetMapping("/tasks/create")
     public String create(){
-        return "tasks/create";
+        return "createtask";
     }
 
     @PostMapping("/tasks/createNew")
@@ -35,7 +35,7 @@ public class TaskController {
     @GetMapping("/tasks/viewOne/{id}")
     public String viewOne(@PathVariable("id") int id, Model model){
         model.addAttribute("task", taskService.findTaskById(id));
-        return "tasks/viewOne";
+        return "viewonetask";
     }
 
     @GetMapping("/tasks/deleteOne/{id}")
@@ -51,7 +51,7 @@ public class TaskController {
     @GetMapping("/tasks/updateOne/{id}")
     public String updateOne(@PathVariable("id") int id, Model model){
         model.addAttribute("task", taskService.findTaskById(id));
-        return "tasks/updateOne";
+        return "updatetask";
     }
 
     @PostMapping("/tasks/updateTask")

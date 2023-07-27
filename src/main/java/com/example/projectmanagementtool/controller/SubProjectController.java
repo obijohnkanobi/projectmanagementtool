@@ -18,27 +18,27 @@ public class SubProjectController {
     public String index(Model model){
         List<SubProject> subProjectList = subProjectService.fetchAll();
         model.addAttribute("subprojects", subProjectList);
-        return "subprojects/index";
+        return "subprojectindex";
     }
 
-    @GetMapping("/subprojects/create")
+    @GetMapping("/createSubProject")
     public String create(){
-        return "subprojects/create";
+        return "createsubproject";
     }
 
-    @PostMapping("/subprojects/createNew")
+    @PostMapping("/createNewSubProject")
     public String createNew(@ModelAttribute SubProject subProject){
         subProjectService.addSubProject(subProject);
         return "redirect:/subprojects";
     }
 
-    @GetMapping("/subprojects/viewOne/{id}")
+    @GetMapping("/viewSubProject/{id}")
     public String viewOne(@PathVariable("id") int id, Model model){
         model.addAttribute("subproject", subProjectService.findSubProjectById(id));
-        return "subprojects/viewOne";
+        return "viewonesubproject";
     }
 
-    @GetMapping("/subprojects/deleteOne/{id}")
+    @GetMapping("/deleteSubProject/{id}")
     public String deleteOne(@PathVariable("id") int id){
         boolean deleted = subProjectService.deleteSubProject(id);
         if (deleted){
@@ -48,13 +48,13 @@ public class SubProjectController {
         }
     }
 
-    @GetMapping("/subprojects/updateOne/{id}")
+    @GetMapping("/updateSubProject/{id}")
     public String updateOne(@PathVariable("id") int id, Model model){
         model.addAttribute("subproject", subProjectService.findSubProjectById(id));
-        return "subprojects/updateOne";
+        return "updatesubproject";
     }
 
-    @PostMapping("/subprojects/updateSubProject")
+    @PostMapping("/updateSubProject")
     public String updateSubProject(@ModelAttribute SubProject subProject){
         subProjectService.updateSubProject(subProject.getId(), subProject);
         return "redirect:/subprojects";

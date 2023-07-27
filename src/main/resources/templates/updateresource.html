@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Update Resource</title>
-  <link rel="stylesheet" href="static/mycss.css">
+  <link rel="stylesheet" href="../static/mycss.css">
 </head>
 <body>
 <h1>Update Resource</h1>
 
-<form action="/updateResource" method="post">
+<form action="/updateresource" method="post">
   <input type="hidden" name="id" th:value="${resource.id}">
   <input type="text" name="name" th:value="${resource.name}">
   <input type="text" name="totalHours" th:value="${resource.totalHours}">

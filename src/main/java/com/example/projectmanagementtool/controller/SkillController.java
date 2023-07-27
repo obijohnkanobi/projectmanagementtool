@@ -18,27 +18,27 @@ public class SkillController {
     public String index(Model model){
         List<Skill> skillList = skillService.fetchAll();
         model.addAttribute("skills", skillList);
-        return "skills/index";
+        return "skillindex";
     }
 
     @GetMapping("/skills/create")
     public String create(){
-        return "skills/create";
+        return "createskill";
     }
 
-    @PostMapping("/skills/createNew")
+    @PostMapping("/createNewSkill")
     public String createNew(@ModelAttribute Skill skill){
         skillService.addSkill(skill);
         return "redirect:/skills";
     }
 
-    @GetMapping("/skills/viewOne/{id}")
+    @GetMapping("/viewSkill/{id}")
     public String viewOne(@PathVariable("id") int id, Model model){
         model.addAttribute("skill", skillService.findSkillById(id));
-        return "skills/viewOne";
+        return "viewoneskill";
     }
 
-    @GetMapping("/skills/deleteOne/{id}")
+    @GetMapping("/deleteSkill/{id}")
     public String deleteOne(@PathVariable("id") int id){
         boolean deleted = skillService.deleteSkill(id);
         if (deleted){
@@ -48,13 +48,13 @@ public class SkillController {
         }
     }
 
-    @GetMapping("/skills/updateOne/{id}")
+    @GetMapping("/updateSkill/{id}")
     public String updateOne(@PathVariable("id") int id, Model model){
         model.addAttribute("skill", skillService.findSkillById(id));
-        return "skills/updateOne";
+        return "updateskill";
     }
 
-    @PostMapping("/skills/updateSkill")
+    @PostMapping("/updateSkill")
     public String updateSkill(@ModelAttribute Skill skill){
         skillService.updateSkill(skill.getId(), skill);
         return "redirect:/skills";

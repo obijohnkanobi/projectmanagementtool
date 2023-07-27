@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8">
   <title>Resource Dashboard</title>
-  <link rel="stylesheet" type="text/css" href="static/mycss.css">
+  <link rel="stylesheet" type="text/css" href="../static/mycss.css">
 </head>
 <body>
 <h1>Resource list</h1>
 
-<a href="/createResource">
+<a href="/createresource">
   <button class="btn-create, btn" id="btn-create">Create a new resource</button>
 </a>
 
@@ -27,13 +27,13 @@
     <td th:text="${resource.name}"/>
     <td th:text="${resource.type}"/>
     <td>
-      <a th:href="@{'/viewResource/'+${resource.id}}">
+      <a th:href="@{'/viewoneresource/'+${resource.id}}">
         <button class="btn-viewOne" id="btn-viewOne">View resource</button>
       </a>
-      <a th:href="@{'/deleteResource/'+${resource.id}}">
+      <a th:href="@{'/deleteresource/'+${resource.id}}">
         <button class="btn-deleteOne" id="btn-deleteOne">Delete resource</button>
       </a>
-      <a th:href="@{'/updateResource/'+${resource.id}}">
+      <a th:href="@{'/updateresource/'+${resource.id}}">
         <button class="btn-updateOne" id="btn-updateOne">Update resource</button>
       </a>
     </td>
