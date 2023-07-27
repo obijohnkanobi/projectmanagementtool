@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create a new SubProject</title>
+  <link rel="stylesheet" href="static/mycss.css">
+</head>
+<body>
+<h1>Create a new SubProject</h1>
+
+<form action="/createNewSubProject" method="post">
+  <label for="name">Enter SubProject name</label>
+  <input type="text" id="name" name="name">
+
+  <label for="description">Enter SubProject description</label>
+  <input type="text" id="description" name="description">
+
+  <label for="projectId">Enter Project ID</label>
+  <input type="number" id="projectId" name="projectId">
+
+  <input type="submit" value="Create a new SubProject" class="btn" id="btn-create">
+</form>
+</body>
+</html>

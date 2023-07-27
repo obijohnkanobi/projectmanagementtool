@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Resource Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="static/mycss.css">
+</head>
+<body>
+<h1>Resource list</h1>
+
+<a href="/createResource">
+  <button class="btn-create, btn" id="btn-create">Create a new resource</button>
+</a>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="resource: ${resources}">
+    <td th:text="${resource.id}"/>
+    <td th:text="${resource.name}"/>
+    <td th:text="${resource.type}"/>
+    <td>
+      <a th:href="@{'/viewResource/'+${resource.id}}">
+        <button class="btn-viewOne" id="btn-viewOne">View resource</button>
+      </a>
+      <a th:href="@{'/deleteResource/'+${resource.id}}">
+        <button class="btn-deleteOne" id="btn-deleteOne">Delete resource</button>
+      </a>
+      <a th:href="@{'/updateResource/'+${resource.id}}">
+        <button class="btn-updateOne" id="btn-updateOne">Update resource</button>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

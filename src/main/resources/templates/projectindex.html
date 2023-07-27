@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Project Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="static/mycss.css">
+</head>
+<body>
+<h1>Project list</h1>
+
+<a href="/createProject">
+  <button class="btn-create, btn" id="btn-create">Create a new project</button>
+</a>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="project: ${projects}">
+    <td th:text="${project.id}"/>
+    <td th:text="${project.name}"/>
+    <td th:text="${project.startDate}"/>
+    <td th:text="${project.endDate}"/>
+    <td>
+      <a th:href="@{'/viewProject/'+${project.id}}">
+        <button class="btn-viewOne" id="btn-viewOne">View project</button>
+      </a>
+      <a th:href="@{'/deleteProject/'+${project.id}}">
+        <button class="btn-deleteOne" id="btn-deleteOne">Delete project</button>
+      </a>
+      <a th:href="@{'/updateProject/'+${project.id}}">
+        <button class="btn-updateOne" id="btn-updateOne">Update project</button>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

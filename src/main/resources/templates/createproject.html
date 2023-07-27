@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create a new Project</title>
+  <link rel="stylesheet" href="static/mycss.css">
+</head>
+<body>
+<h1>Create a new Project</h1>
+
+<form action="/createNewProject" method="post">
+  <label for="name">Enter Project name</label>
+  <input type="text" id="name" name="name">
+
+  <label for="description">Enter Project description</label>
+  <input type="text" id="description" name="description">
+
+  <label for="startDate">Enter start date</label>
+  <input type="date" id="startDate" name="startDate">
+
+  <label for="estimatedHours">Enter estimated hours</label>
+  <input type="number" id="estimatedHours" name="estimatedHours">
+
+  <label for="actualHours">Enter actual hours</label>
+  <input type="number" id="actualHours" name="actualHours">
+
+  <input type="submit" value="Create a new Project" class="btn" id="btn-create">
+</form>
+</body>
+</html>

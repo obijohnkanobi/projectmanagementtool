@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>SubProject Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="static/mycss.css">
+</head>
+<body>
+<h1>SubProject list</h1>
+
+<a href="/createSubProject">
+  <button class="btn-create, btn" id="btn-create">Create a new subproject</button>
+</a>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Project Id</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="subproject: ${subprojects}">
+    <td th:text="${subproject.id}"/>
+    <td th:text="${subproject.name}"/>
+    <td th:text="${subproject.startDate}"/>
+    <td th:text="${subproject.endDate}"/>
+    <td th:text="${subproject.projectId}"/>
+    <td>
+      <a th:href="@{'/viewSubProject/'+${subproject.id}}">
+        <button class="btn-viewOne" id="btn-viewOne">View subproject</button>
+      </a>
+      <a th:href="@{'/deleteSubProject/'+${subproject.id}}">
+        <button class="btn-deleteOne" id="btn-deleteOne">Delete subproject</button>
+      </a>
+      <a th:href="@{'/updateSubProject/'+${subproject.id}}">
+        <button class="btn-updateOne" id="btn-updateOne">Update subproject</button>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

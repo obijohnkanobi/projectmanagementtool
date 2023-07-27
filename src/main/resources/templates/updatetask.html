@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Task</title>
+  <link rel="stylesheet" href="static/mycss.css">
+</head>
+<body>
+<h1>Update Task</h1>
+
+<form action="/updateTask" method="post">
+  <input type="hidden" name="id" th:value="${task.id}">
+  <input type="text" name="name" th:value="${task.name}">
+  <input type="text" name="startDate" th:value="${task.startDate}">
+  <input type="text" name="endDate" th:value="${task.endDate}">
+  <input type="text" name="resourceId" th:value="${task.resourceId}">
+  <input type="text" name="subProjectId" th:value="${task.subProjectId}">
+  <input type="submit" value="Save changes" class="btn" id="btn-updateOne">
+</form>
+</body>
+</html>

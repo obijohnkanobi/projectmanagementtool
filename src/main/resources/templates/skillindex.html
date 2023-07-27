@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Skill Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="static/mycss.css">
+</head>
+<body>
+<h1>Skill list</h1>
+
+<a href="/createSkill">
+  <button class="btn-create, btn" id="btn-create">Create a new skill</button>
+</a>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="skill: ${skills}">
+    <td th:text="${skill.id}"/>
+    <td th:text="${skill.name}"/>
+    <td th:text="${skill.description}"/>
+    <td>
+      <a th:href="@{'/viewSkill/'+${skill.id}}">
+        <button class="btn-viewOne" id="btn-viewOne">View skill</button>
+      </a>
+      <a th:href="@{'/deleteSkill/'+${skill.id}}">
+        <button class="btn-deleteOne" id="btn-deleteOne">Delete skill</button>
+      </a>
+      <a th:href="@{'/updateSkill/'+${skill.id}}">
+        <button class="btn-updateOne" id="btn-updateOne">Update skill</button>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

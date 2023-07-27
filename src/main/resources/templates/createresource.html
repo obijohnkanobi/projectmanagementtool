@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create a new Resource</title>
+  <link rel="stylesheet" href="static/mycss.css">
+</head>
+<body>
+<h1>Create a new Resource</h1>
+
+<form action="/createNewResource" method="post">
+  <label for="name">Enter Resource name</label>
+  <input type="text" id="name" name="name">
+
+  <label for="totalHours">Enter total hours</label>
+  <input type="number" id="totalHours" name="totalHours">
+
+  <label for="rate">Enter rate</label>
+  <input type="number" id="rate" name="rate">
+
+  <label for="skillId">Enter Skill ID</label>
+  <input type="number" id="skillId" name="skillId">
+
+  <input type="submit" value="Create a new Resource" class="btn" id="btn-create">
+</form>
+</body>
+</html>

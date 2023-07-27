@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Resource</title>
+  <link rel="stylesheet" href="static/mycss.css">
+</head>
+<body>
+<h1>Update Resource</h1>
+
+<form action="/updateResource" method="post">
+  <input type="hidden" name="id" th:value="${resource.id}">
+  <input type="text" name="name" th:value="${resource.name}">
+  <input type="text" name="totalHours" th:value="${resource.totalHours}">
+  <input type="text" name="rate" th:value="${resource.rate}">
+  <input type="text" name="skillId" th:value="${resource.skillId}">
+  <input type="submit" value="Save changes" class="btn" id="btn-updateOne">
+</form>
+</body>
+</html>

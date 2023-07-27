@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Create a new Task</title>
+  <link rel="stylesheet" href="static/mycss.css">
+</head>
+<body>
+<h1>Create a new Task</h1>
+
+<form action="/createNewTask" method="post">
+  <label for="name">Enter Task name</label>
+  <input type="text" id="name" name="name">
+
+  <label for="startDate">Enter start date</label>
+  <input type="date" id="startDate" name="startDate">
+
+  <label for="endDate">Enter end date</label>
+  <input type="date" id="endDate" name="endDate">
+
+  <label for="estimatedHours">Enter estimated hours</label>
+  <input type="number" id="estimatedHours" name="estimatedHours">
+
+  <label for="subprojectId">Enter SubProject ID</label>
+  <input type="number" id="subprojectId" name="subprojectId">
+
+  <input type="submit" value="Create a new Task" class="btn" id="btn-create">
+</form>
+</body>
+</html>

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta charset="UTF-8">
+  <title>Task Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="static/mycss.css">
+</head>
+<body>
+<h1>Task list</h1>
+
+<a href="/createTask">
+  <button class="btn-create, btn" id="btn-create">Create a new task</button>
+</a>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>SubProject Id</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="task: ${tasks}">
+    <td th:text="${task.id}"/>
+    <td th:text="${task.name}"/>
+    <td th:text="${task.startDate}"/>
+    <td th:text="${task.endDate}"/>
+    <td th:text="${task.subprojectId}"/>
+    <td>
+      <a th:href="@{'/viewTask/'+${task.id}}">
+        <button class="btn-viewOne" id="btn-viewOne">View task</button>
+      </a>
+      <a th:href="@{'/deleteTask/'+${task.id}}">
+        <button class="btn-deleteOne" id="btn-deleteOne">Delete task</button>
+      </a>
+      <a th:href="@{'/updateTask/'+${task.id}}">
+        <button class="btn-updateOne" id="btn-updateOne">Update task</button>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

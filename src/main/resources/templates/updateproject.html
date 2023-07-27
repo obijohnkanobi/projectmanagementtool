@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update Project</title>
+  <link rel="stylesheet" href="static/mycss.css">
+</head>
+<body>
+<h1>Update Project</h1>
+
+<form action="/updateProject" method="post">
+  <input type="hidden" name="id" th:value="${project.id}">
+  <input type="text" name="name" th:value="${project.name}">
+  <input type="date" name="startDate" th:value="${project.startDate}">
+  <input type="date" name="endDate" th:value="${project.endDate}">
+  <input type="submit" value="Save changes" class="btn" id="btn-updateOne">
+</form>
+</body>
+</html>
