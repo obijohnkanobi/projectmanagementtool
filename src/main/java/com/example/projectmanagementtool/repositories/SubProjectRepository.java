@@ -1,6 +1,7 @@
 package com.example.projectmanagementtool.repositories;
 
 import com.example.projectmanagementtool.models.SubProject;
+import com.example.projectmanagementtool.models.Task;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,6 +14,8 @@ import java.util.List;
 public class SubProjectRepository {
     @Autowired
     JdbcTemplate template;
+    @Autowired
+    TaskRepository taskRepository;
 
     public List<SubProject> fetchAll(){
         String sql = "SELECT * FROM subprojects";
@@ -29,6 +32,12 @@ public class SubProjectRepository {
         String sql = "SELECT * FROM subprojects WHERE id = ?";
         RowMapper<SubProject> rowMapper = new BeanPropertyRowMapper<>(SubProject.class);
         SubProject subproject = template.queryForObject(sql, rowMapper, id);
+
+        String sqlTasks = "SELECT * FROM tasks WHERE subproject_id = ?";
+        RowMapper<Task> rowMapperTasks = new BeanPropertyRowMapper<>(Task.class);
+        List<Task> tasks = template.query(sqlTasks, rowMapperTasks, id);
+        subproject.setTasks(tasks);
+
         return subproject;
     }
 

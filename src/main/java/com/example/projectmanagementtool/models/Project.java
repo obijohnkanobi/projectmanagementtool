@@ -1,12 +1,14 @@
 package com.example.projectmanagementtool.models;
 
 import java.util.Date;
+import java.util.List;
 
 public class Project {
     private int id;
     private String name;
     private Date startDate;
     private Date endDate;
+    private List<SubProject> subProjects;
 
     // Constructors, getters, and setters
 
@@ -50,5 +52,13 @@ public class Project {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+
+    public List<SubProject> getSubProjects() {
+        return subProjects;
+    }
+    public void setSubProjects(List<SubProject> subProjects) {
+        this.subProjects = subProjects;
     }
 }

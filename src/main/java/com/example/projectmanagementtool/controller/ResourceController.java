@@ -1,4 +1,7 @@
+package com.example.projectmanagementtool.controller;
+
 import com.example.projectmanagementtool.models.Resource;
+import com.example.projectmanagementtool.service.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,7 +15,7 @@ import java.util.List;
 @Controller
 public class ResourceController {
     @Autowired
-    com.example.projectmanagementtool.services.ResourceService resourceService;
+    private ResourceService resourceService;
 
     @GetMapping("/resourceindex")
     public String index(Model model){

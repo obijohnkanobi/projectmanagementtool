@@ -1,6 +1,7 @@
 package com.example.projectmanagementtool.repositories;
 
 import com.example.projectmanagementtool.models.Project;
+import com.example.projectmanagementtool.models.SubProject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -13,6 +14,8 @@ import java.util.List;
 public class ProjectRepository {
     @Autowired
     JdbcTemplate template;
+    @Autowired
+    SubProjectRepository subProjectRepository;
 
     public List<Project> fetchAll(){
         String sql = "SELECT * FROM projects";
@@ -29,8 +32,14 @@ public class ProjectRepository {
         String sql = "SELECT * FROM projects WHERE id = ?";
         RowMapper<Project> rowMapper = new BeanPropertyRowMapper<>(Project.class);
         Project p = template.queryForObject(sql, rowMapper, id);
+
+        String sqlSubProjects = "SELECT * FROM subprojects WHERE project_id = ?";
+        RowMapper<SubProject> rowMapperSubProjects = new BeanPropertyRowMapper<>(SubProject.class);
+        List<SubProject> subProjects = template.query(sqlSubProjects, rowMapperSubProjects, id);
+        p.setSubProjects(subProjects);
         return p;
     }
+
 
     public Boolean deleteProject(int id){
         String sql = "DELETE FROM projects WHERE id = ?";
@@ -41,4 +50,5 @@ public class ProjectRepository {
         String sql = "UPDATE projects SET name = ?, start_date = ?, end_date = ? WHERE id = ?";
         template.update(sql, p.getName(), p.getStartDate(), p.getEndDate(), p.getId());
     }
+    
 }

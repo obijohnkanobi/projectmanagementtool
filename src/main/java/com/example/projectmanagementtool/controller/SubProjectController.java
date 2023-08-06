@@ -1,3 +1,5 @@
+package com.example.projectmanagementtool.controller;
+
 import com.example.projectmanagementtool.models.SubProject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,25 +16,25 @@ public class SubProjectController {
     @Autowired
     com.example.projectmanagementtool.services.SubProjectService subProjectService;
 
-    @GetMapping("/subprojects")
+    @GetMapping("/subprojectindex")
     public String index(Model model){
         List<SubProject> subProjectList = subProjectService.fetchAll();
         model.addAttribute("subprojects", subProjectList);
         return "subprojectindex";
     }
 
-    @GetMapping("/createSubProject")
+    @GetMapping("/createsubproject")
     public String create(){
         return "createsubproject";
     }
 
-    @PostMapping("/createNewSubProject")
+    @PostMapping("/createsubproject")
     public String createNew(@ModelAttribute SubProject subProject){
         subProjectService.addSubProject(subProject);
-        return "redirect:/subprojects";
+        return "redirect:/subprojectindex";
     }
 
-    @GetMapping("/viewSubProject/{id}")
+    @GetMapping("/viewonesubproject/{id}")
     public String viewOne(@PathVariable("id") int id, Model model){
         model.addAttribute("subproject", subProjectService.findSubProjectById(id));
         return "viewonesubproject";
@@ -42,9 +44,9 @@ public class SubProjectController {
     public String deleteOne(@PathVariable("id") int id){
         boolean deleted = subProjectService.deleteSubProject(id);
         if (deleted){
-            return "redirect:/subprojects";
+            return "redirect:/subprojectindex";
         } else {
-            return "redirect:/subprojects";
+            return "redirect:/subprojectindex";
         }
     }
 
@@ -57,6 +59,6 @@ public class SubProjectController {
     @PostMapping("/updateSubProject")
     public String updateSubProject(@ModelAttribute SubProject subProject){
         subProjectService.updateSubProject(subProject.getId(), subProject);
-        return "redirect:/subprojects";
+        return "redirect:/subprojectindex";
     }
 }

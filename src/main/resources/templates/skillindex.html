@@ -1,14 +1,36 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <title>Skill Dashboard</title>
-  <link rel="stylesheet" type="text/css" href="../static/mycss.css">
+    <link rel="stylesheet" type="text/css" href="/static/mycss.css">
+    <link rel="stylesheet" type="text/css" href="/static/topnavbar.css">
+
+
 </head>
 <body>
+<ul>
+    <li><a href="/index">Home</a></li>
+    <li><a href="/projectindex">Projects</a></li>
+    <li><a href="/resourceindex">Resources</a></li>
+    <li><a href="/skillindex">Skills</a></li>
+    <li><a href="/subprojectindex">Subprojects</a></li>
+    <li><a href="/taskindex">Tasks</a></li>
+    <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">About</a>
+        <div class="dropdown-content">
+            <a href="aboutus">About Us</a>
+            <a href="contact">Contact</a>
+            <a href="faq">FAQ</a>
+        </div>
+    </li>
+</ul>
 <h1>Skill list</h1>
 
-<a href="/skills/create">
+<p th:text="${error}" th:if="${error}" class="error-message"></p>
+
+<a href="/createskill">
   <button class="btn-create btn" id="btn-create">Create a new skill</button>
 </a>
 
@@ -24,16 +46,16 @@
   <tr th:each="skill: ${skills}">
     <td th:text="${skill.id}"/>
     <td th:text="${skill.name}"/>
-    <td>
-      <a th:href="@{'/skills/viewOne/'+${skill.id}}">
-        <button class="btn-viewOne" id="btn-viewOne">View skill</button>
-      </a>
-      <a th:href="@{'/skills/deleteOne/'+${skill.id}}">
-        <button class="btn-deleteOne" id="btn-deleteOne">Delete skill</button>
-      </a>
-      <a th:href="@{'/skills/updateOne/'+${skill.id}}">
-        <button class="btn-updateOne" id="btn-updateOne">Update skill</button>
-      </a>
+    <td class="action-btns">
+         <a th:href="@{'/viewoneskill/'+${skill.id}}" method="get">
+            <button type="submit" class="btn-viewOne" id="btn-viewOne">View skill</button>
+         </a>
+         <a th:href="@{'/deleteSkill/'+${skill.id}}" method="post">
+            <button type="submit" class="btn-deleteOne" id="btn-deleteOne">Delete skill</button>
+         </a>
+          <a th:href="@{'/updateskill/'+${skill.id}}" method="get">
+            <button type="submit" class="btn-updateOne" id="btn-updateOne">Update skill</button>
+          </a>
     </td>
   </tr>
   </tbody>

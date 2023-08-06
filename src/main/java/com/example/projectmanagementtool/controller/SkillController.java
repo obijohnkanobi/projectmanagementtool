@@ -1,3 +1,5 @@
+package com.example.projectmanagementtool.controller;
+
 import com.example.projectmanagementtool.models.Skill;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -14,49 +16,51 @@ public class SkillController {
     @Autowired
     com.example.projectmanagementtool.services.SkillService skillService;
 
-    @GetMapping("/skills")
+    @GetMapping("/skillindex")
     public String index(Model model){
         List<Skill> skillList = skillService.fetchAll();
         model.addAttribute("skills", skillList);
         return "skillindex";
     }
 
-    @GetMapping("/skills/create")
+    @GetMapping("/createskill")
     public String create(){
         return "createskill";
     }
 
-    @PostMapping("/createNewSkill")
+    @PostMapping("/createskill")
     public String createNew(@ModelAttribute Skill skill){
         skillService.addSkill(skill);
-        return "redirect:/skills";
+        return "redirect:/createskill";
     }
 
-    @GetMapping("/viewSkill/{id}")
+    @GetMapping("/viewoneskill/{id}")
     public String viewOne(@PathVariable("id") int id, Model model){
         model.addAttribute("skill", skillService.findSkillById(id));
         return "viewoneskill";
     }
 
-    @GetMapping("/deleteSkill/{id}")
-    public String deleteOne(@PathVariable("id") int id){
+    @PostMapping("/deleteSkill/{id}")
+    public String deleteOne(@PathVariable("id") int id, Model model){
         boolean deleted = skillService.deleteSkill(id);
         if (deleted){
-            return "redirect:/skills";
+            return "redirect:/skillindex";
         } else {
-            return "redirect:/skills";
+            model.addAttribute("error", "Could not delete skill with id " + id);
+            return "redirect:/skillindex";
         }
     }
 
-    @GetMapping("/updateSkill/{id}")
+
+    @GetMapping("/updateskill/{id}")
     public String updateOne(@PathVariable("id") int id, Model model){
         model.addAttribute("skill", skillService.findSkillById(id));
         return "updateskill";
     }
 
-    @PostMapping("/updateSkill")
+    @PostMapping("/updateskill")
     public String updateSkill(@ModelAttribute Skill skill){
         skillService.updateSkill(skill.getId(), skill);
-        return "redirect:/skills";
+        return "redirect:/skillindex";
     }
 }

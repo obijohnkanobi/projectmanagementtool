@@ -1,14 +1,34 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <title>Task Dashboard</title>
-  <link rel="stylesheet" type="text/css" href="/mycss.css">
+  <link rel="stylesheet" type="text/css" href="/static/mycss.css">
+  <link rel="stylesheet" type="text/css" href="/static/topnavbar.css">
+
+
 </head>
 <body>
+<ul>
+  <li><a href="/index">Home</a></li>
+  <li><a href="/projectindex">Projects</a></li>
+  <li><a href="/resourceindex">Resources</a></li>
+  <li><a href="/skillindex">Skills</a></li>
+  <li><a href="/subprojectindex">Subprojects</a></li>
+  <li><a href="/taskindex">Tasks</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">About</a>
+    <div class="dropdown-content">
+      <a href="/aboutus.html">About Us</a>
+      <a href="/contact.html">Contact</a>
+      <a href="/faq.html">FAQ</a>
+    </div>
+  </li>
+</ul>
 <h1>Task list</h1>
 
-<a href="/tasks/create">
+<a href="/createtask">
   <button class="btn-create" id="btn-create">Create a new task</button>
 </a>
 
@@ -33,13 +53,13 @@
     <td th:text="${task.estimatedHours}"/>
     <td th:text="${task.subprojectId}"/>
     <td>
-      <a th:href="@{'/tasks/viewOne/'+${task.id}}">
+      <a th:href="@{'/viewonetask'+${task.id}}">
         <button class="btn-viewOne" id="btn-viewOne">View task</button>
       </a>
-      <a th:href="@{'/tasks/deleteOne/'+${task.id}}">
+      <a th:href="@{'/deleteOne'+${task.id}}">
         <button class="btn-deleteOne" id="btn-deleteOne">Delete task</button>
       </a>
-      <a th:href="@{'/tasks/updateOne/'+${task.id}}">
+      <a th:href="@{'/updatetask'+${task.id}}">
         <button class="btn-updateOne" id="btn-updateOne">Update task</button>
       </a>
     </td>

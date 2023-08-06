@@ -1,11 +1,31 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <title>Project Dashboard</title>
-  <link rel="stylesheet" type="text/css" href="../static/mycss.css">
+  <link rel="stylesheet" type="text/css" href="/static/mycss.css">
+  <link rel="stylesheet" type="text/css" href="/static/topnavbar.css">
+
 </head>
 <body>
+<ul>
+  <li><a href="/index">Home</a></li>
+  <li><a href="/projectindex">Projects</a></li>
+  <li><a href="/resourceindex">Resources</a></li>
+  <li><a href="/skillindex">Skills</a></li>
+  <li><a href="/subprojectindex">Subprojects</a></li>
+  <li><a href="/taskindex">Tasks</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">About</a>
+    <div class="dropdown-content">
+      <a href="aboutus">About Us</a>
+      <a href="contact">Contact</a>
+      <a href="faq">FAQ</a>
+    </div>
+  </li>
+</ul>
+
 <h1>Project list</h1>
 
 <a href="/createproject">
