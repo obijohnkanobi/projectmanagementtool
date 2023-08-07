@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Task Resources</title>
+</head>
+<body>
+<h1>Task Resources</h1>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Task ID</th>
+        <th>Resource ID</th>
+        <th>Hours Allocated</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="taskResource : ${taskResources}">
+        <td th:text="${taskResource.id}"></td>
+        <td th:text="${taskResource.task.id}"></td>
+        <td th:text="${taskResource.resource.id}"></td>
+        <td th:text="${taskResource.hoursAllocated}"></td>
+        <td>
+            <a th:href="@{'/taskresources/view/' + ${taskResource.id}}">View</a>
+            <a th:href="@{'/taskresources/update/' + ${taskResource.id}}">Update</a>
+            <a th:href="@{'/taskresources/delete/' + ${taskResource.id}}">Delete</a>
+        </td>
+    </tr>
+    </tbody>
+</table>
+<a href="/taskresources/create">Create New Task Resource</a>
+</body>
+</html>

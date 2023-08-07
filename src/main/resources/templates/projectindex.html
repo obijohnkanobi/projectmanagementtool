@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Project Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="/static/mycss.css">
+  <link rel="stylesheet" type="text/css" href="/static/topnavbar.css">
+
+</head>
+<body>
+<ul>
+  <li><a href="/index">Home</a></li>
+  <li><a href="/projectindex">Projects</a></li>
+  <li><a href="/resourceindex">Resources</a></li>
+  <li><a href="/skillindex">Skills</a></li>
+  <li><a href="/subprojectindex">Subprojects</a></li>
+  <li><a href="/taskindex">Tasks</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">About</a>
+    <div class="dropdown-content">
+      <a href="aboutus">About Us</a>
+      <a href="contact">Contact</a>
+      <a href="faq">FAQ</a>
+    </div>
+  </li>
+</ul>
+
+<h1>Project list</h1>
+
+<a href="/createproject">
+  <button class="btn-create, btn" id="btn-create">Create a new project</button>
+</a>
+
+<table>
+  <thead>
+  <tr>
+    <th>Id</th>
+    <th>Name</th>
+    <th>Start Date</th>
+    <th>End Date</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr th:each="project: ${projects}">
+    <td th:text="${project.id}"/>
+    <td th:text="${project.name}"/>
+    <td th:text="${project.startDate}"/>
+    <td th:text="${project.endDate}"/>
+    <td>
+      <a th:href="@{'/viewoneproject/'+${project.id}}">
+        <button class="btn-viewOne" id="btn-viewOne">View project</button>
+      </a>
+      <a th:href="@{'/deleteproject/'+${project.id}}">
+        <button class="btn-deleteOne" id="btn-deleteOne">Delete project</button>
+      </a>
+      <a th:href="@{'/updateproject/'+${project.id}}">
+        <button class="btn-updateOne" id="btn-updateOne">Update project</button>
+      </a>
+    </td>
+  </tr>
+  </tbody>
+</table>
+</body>
+</html>

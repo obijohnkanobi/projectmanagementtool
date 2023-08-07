@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Dashboard</title>
+  <link rel="stylesheet" type="text/css" href="static/mycss.css">
+  <link rel="stylesheet" type="text/css" href="static/topnavbar.css">
+</head>
+<body>
+<ul>
+  <li><a href="/index">Home</a></li>
+  <li><a href="/projectindex">Projects</a></li>
+  <li><a href="/resourceindex">Resources</a></li>
+  <li><a href="/skillindex">Skills</a></li>
+  <li><a href="/subprojectindex">Subprojects</a></li>
+  <li><a href="/taskindex">Tasks</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">About</a>
+    <div class="dropdown-content">
+      <a href="aboutus">About Us</a>
+      <a href="contact">Contact</a>
+      <a href="faq">FAQ</a>
+    </div>
+  </li>
+</ul>
+
+<h1>Welcome to project overview</h1>
+
+<div th:each="project: ${projects}">
+  <h2 th:text="${project.name}"></h2>
+  <p>Start Date: <span th:text="${project.startDate}"></span></p>
+  <p>End Date: <span th:text="${project.endDate}"></span></p>
+  <!-- Project actions -->
+  <a th:href="@{'/viewoneproject/'+${project.id}}">
+    <button>View project</button>
+  </a>
+  <a th:href="@{'/deleteproject/'+${project.id}}">
+    <button>Delete project</button>
+  </a>
+  <a th:href="@{'/updateproject/'+${project.id}}">
+    <button>Update project</button>
+  </a>
+
+  <h3>Subprojects:</h3>
+  <div th:each="subproject: ${project.subProjects}">
+    <h4 th:text="${subproject.name}"></h4>
+
+    <!-- Subproject actions -->
+    <a th:href="@{'/viewonesubproject/'+${subproject.id}}">
+      <button>View subproject</button>
+    </a>
+    <a th:href="@{'/deletesubproject/'+${subproject.id}}">
+      <button>Delete subproject</button>
+    </a>
+    <a th:href="@{'/updatesubproject/'+${subproject.id}}">
+      <button>Update subproject</button>
+    </a>
+
+    <h5>Tasks:</h5>
+    <div th:each="task: ${subproject.tasks}">
+      <p th:text="${task.name}"></p>
+
+      <!-- Task actions -->
+      <a th:href="@{'/viewonetask/'+${task.id}}">
+        <button>View task</button>
+      </a>
+      <a th:href="@{'/deleteone/'+${task.id}}">
+        <button>Delete task</button>
+      </a>
+      <a th:href="@{'/updatetask/'+${task.id}}">
+        <button>Update task</button>
+      </a>
+
+      <p>Resources:</p>
+      <ul>
+        <li th:each="resource: ${task.resources}">
+          <!-- Resource details and actions -->
+          <span th:text="${resource.name}"></span>
+          <a th:href="@{'/viewoneresource/'+${resource.id}}">
+            <button>View resource</button>
+          </a>
+          <a th:href="@{'/resources/deleteone/'+${resource.id}}">
+            <button>Delete resource</button>
+          </a>
+          <a th:href="@{'/updateresource/'+${resource.id}}">
+            <button>Update resource</button>
+          </a>
+
+          <p>Skills:</p>
+          <ul>
+            <li th:each="skill: ${resource.skills}">
+              <!-- Skill details and actions -->
+              <span th:text="${skill.name}"></span>
+              <a th:href="@{'/viewoneskill/'+${skill.id}}">
+                <button>View skill</button>
+              </a>
+              <a th:href="@{'/deleteSkill/'+${skill.id}}">
+                <button>Delete skill</button>
+              </a>
+              <a th:href="@{'/updateskill/'+${skill.id}}">
+                <button>Update skill</button>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

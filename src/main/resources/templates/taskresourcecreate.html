@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Task Resource</title>
+</head>
+<body>
+<h1>Create Task Resource</h1>
+<form action="/taskresources/create" method="post">
+    <label for="taskId">Task ID:</label>
+    <input type="text" id="taskId" name="task.id" required>
+    <br>
+    <label for="resourceId">Resource ID:</label>
+    <input type="text" id="resourceId" name="resource.id" required>
+    <br>
+    <label for="hoursAllocated">Hours Allocated:</label>
+    <input type="text" id="hoursAllocated" name="hoursAllocated" required>
+    <br>
+    <input type="submit" value="Create">
+</form>
+<a href="/taskresources">Back to Task Resources</a>
+</body>
+</html>

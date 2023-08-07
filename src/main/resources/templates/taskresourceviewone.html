@@ -1,0 +1,17 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>View Task Resource</title>
+</head>
+<body>
+<h1>View Task Resource</h1>
+<p>ID: <span th:text="${taskResource.id}"></span></p>
+<p>Task ID: <span th:text="${taskResource.task.id}"></span></p>
+<p>Resource ID: <span th:text="${taskResource.resource.id}"></span></p>
+<p>Hours Allocated: <span th:text="${taskResource.hoursAllocated}"></span></p>
+<a href="/taskresources">Back to Task Resources</a>
+</body>
+</html>

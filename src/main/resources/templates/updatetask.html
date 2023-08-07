@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Update Task</title>
+  <link rel="stylesheet" type="text/css" href="/static/mycss.css">
+  <link rel="stylesheet" type="text/css" href="/static/topnavbar.css">
+</head>
+
+<body>
+<ul>
+  <li><a href="/index">Home</a></li>
+  <li><a href="/projectindex">Projects</a></li>
+  <li><a href="/resourceindex">Resources</a></li>
+  <li><a href="/skillindex">Skills</a></li>
+  <li><a href="/subprojectindex">Subprojects</a></li>
+  <li><a href="/taskindex">Tasks</a></li>
+  <li class="dropdown">
+    <a href="javascript:void(0)" class="dropbtn">About</a>
+    <div class="dropdown-content">
+      <a href="aboutus">About Us</a>
+      <a href="contact">Contact</a>
+      <a href="faq">FAQ</a>
+    </div>
+  </li>
+</ul>
+<h1>Update Task</h1>
+<form action="/tasks/updateTask" method="post">
+  <input type="hidden" name="id" th:value="${task.id}">
+  <input type="text" name="name" th:value="${task.name}">
+  <input type="date" name="startDate" th:value="${task.startDate}">
+  <input type="date" name="endDate" th:value="${task.endDate}">
+  <input type="number" name="estimatedHours" th:value="${task.estimatedHours}">
+  <input type="number" name="subprojectId" th:value="${task.subProject.id}">
+  <input type="submit" value="Save changes" class="btn" id="btn-updateOne">
+</form>
+</body>
+
+</html>
