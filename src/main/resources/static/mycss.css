@@ -1,6 +1,6 @@
 table {
     border-collapse: collapse;
-    width: 40%;
+    width: 40% !important;
 }
 th {
     background-color: #c3e5b3;
@@ -39,16 +39,16 @@ tr:hover {background-color: coral;}
     background-color: #75afe5;
 }
 body {
-    display: flex;
+    /*display: flex;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
     margin: 0;
-    padding: 0;
+    padding: 0;*/
     background-color: #b8d2af;
     color: #333333;
     font-family: Arial, sans-serif;}
 
-.container {
+/*.container {
     width: 90%;
-    max-width: 1200px;}
+    max-width: 1200px;}*/

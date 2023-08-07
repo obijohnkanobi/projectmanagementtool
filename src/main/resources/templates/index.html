@@ -1,112 +1,134 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
+
 <head>
   <meta charset="UTF-8">
   <title>Dashboard</title>
   <link rel="stylesheet" type="text/css" href="static/mycss.css">
   <link rel="stylesheet" type="text/css" href="static/topnavbar.css">
 </head>
+
 <body>
-<ul>
-  <li><a href="/index">Home</a></li>
-  <li><a href="/projectindex">Projects</a></li>
-  <li><a href="/resourceindex">Resources</a></li>
-  <li><a href="/skillindex">Skills</a></li>
-  <li><a href="/subprojectindex">Subprojects</a></li>
-  <li><a href="/taskindex">Tasks</a></li>
-  <li class="dropdown">
-    <a href="javascript:void(0)" class="dropbtn">About</a>
-    <div class="dropdown-content">
-      <a href="aboutus">About Us</a>
-      <a href="contact">Contact</a>
-      <a href="faq">FAQ</a>
-    </div>
-  </li>
-</ul>
 
-<h1>Welcome to project overview</h1>
+<nav>
+  <ul>
+    <li><a href="/index">Home</a></li>
+    <li><a href="/projectindex">Projects</a></li>
+    <li><a href="/resourceindex">Resources</a></li>
+    <li><a href="/skillindex">Skills</a></li>
+    <li><a href="/subprojectindex">Subprojects</a></li>
+    <li><a href="/taskindex">Tasks</a></li>
+    <li class="dropdown">
+      <a href="javascript:void(0)" class="dropbtn">About</a>
+      <div class="dropdown-content">
+        <a href="aboutus">About Us</a>
+        <a href="contact">Contact</a>
+        <a href="faq">FAQ</a>
+      </div>
+    </li>
+  </ul>
+</nav>
 
-<div th:each="project: ${projects}">
-  <h2 th:text="${project.name}"></h2>
-  <p>Start Date: <span th:text="${project.startDate}"></span></p>
-  <p>End Date: <span th:text="${project.endDate}"></span></p>
-  <!-- Project actions -->
-  <a th:href="@{'/viewoneproject/'+${project.id}}">
-    <button>View project</button>
-  </a>
-  <a th:href="@{'/deleteproject/'+${project.id}}">
-    <button>Delete project</button>
-  </a>
-  <a th:href="@{'/updateproject/'+${project.id}}">
-    <button>Update project</button>
-  </a>
+<main class="container">
 
-  <h3>Subprojects:</h3>
-  <div th:each="subproject: ${project.subProjects}">
-    <h4 th:text="${subproject.name}"></h4>
+  <header>
+    <h1>Welcome to the Project Overview</h1>
+  </header>
 
-    <!-- Subproject actions -->
-    <a th:href="@{'/viewonesubproject/'+${subproject.id}}">
-      <button>View subproject</button>
-    </a>
-    <a th:href="@{'/deletesubproject/'+${subproject.id}}">
-      <button>Delete subproject</button>
-    </a>
-    <a th:href="@{'/updatesubproject/'+${subproject.id}}">
-      <button>Update subproject</button>
-    </a>
+  <section th:each="project: ${projects}">
+    <article>
+      <header>
+        <h2 th:text="${project.name}"></h2>
+        <p>Start Date: <time th:text="${project.startDate}"></time></p>
+        <p>End Date: <time th:text="${project.endDate}"></time></p>
+      </header>
 
-    <h5>Tasks:</h5>
-    <div th:each="task: ${subproject.tasks}">
-      <p th:text="${task.name}"></p>
+      <div class="action-buttons">
+        <a th:href="@{'/viewoneproject/'+${project.id}}">
+          <button class="btn-viewOne">View project</button>
+        </a>
+        <a th:href="@{'/deleteproject/'+${project.id}}">
+          <button class="btn-deleteOne">Delete project</button>
+        </a>
+        <a th:href="@{'/updateproject/'+${project.id}}">
+          <button class="btn-updateOne">Update project</button>
+        </a>
+      </div>
 
-      <!-- Task actions -->
-      <a th:href="@{'/viewonetask/'+${task.id}}">
-        <button>View task</button>
-      </a>
-      <a th:href="@{'/deleteone/'+${task.id}}">
-        <button>Delete task</button>
-      </a>
-      <a th:href="@{'/updatetask/'+${task.id}}">
-        <button>Update task</button>
-      </a>
+      <section th:each="subproject: ${project.subProjects}">
+        <header>
+          <h3 th:text="${subproject.name}"></h3>
+        </header>
 
-      <p>Resources:</p>
-      <ul>
-        <li th:each="resource: ${task.resources}">
-          <!-- Resource details and actions -->
-          <span th:text="${resource.name}"></span>
-          <a th:href="@{'/viewoneresource/'+${resource.id}}">
-            <button>View resource</button>
+        <div class="action-buttons">
+          <a th:href="@{'/viewonesubproject/'+${subproject.id}}">
+            <button class="btn-viewOne">View subproject</button>
           </a>
-          <a th:href="@{'/resources/deleteone/'+${resource.id}}">
-            <button>Delete resource</button>
+          <a th:href="@{'/deleteSubProject/'+${subproject.id}}">
+            <button class="btn-deleteOne">Delete subproject</button>
           </a>
-          <a th:href="@{'/updateresource/'+${resource.id}}">
-            <button>Update resource</button>
+          <a th:href="@{'/updateSubProject/'+${subproject.id}}">
+            <button class="btn-updateOne">Update subproject</button>
           </a>
+        </div>
 
-          <p>Skills:</p>
-          <ul>
-            <li th:each="skill: ${resource.skills}">
-              <!-- Skill details and actions -->
-              <span th:text="${skill.name}"></span>
-              <a th:href="@{'/viewoneskill/'+${skill.id}}">
-                <button>View skill</button>
-              </a>
-              <a th:href="@{'/deleteSkill/'+${skill.id}}">
-                <button>Delete skill</button>
-              </a>
-              <a th:href="@{'/updateskill/'+${skill.id}}">
-                <button>Update skill</button>
-              </a>
-            </li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</div>
+        <ul th:each="task: ${subproject.tasks}">
+          <li>
+            <header>
+              <h4 th:text="${task.name}"></h4>
+            </header>
 
+            <div class="action-buttons">
+              <a th:href="@{'/viewonetask/'+${task.id}}">
+                <button class="btn-viewOne">View task</button>
+              </a>
+              <a th:href="@{'/deleteOne/'+${task.id}}">
+                <button class="btn-deleteOne">Delete task</button>
+              </a>
+              <a th:href="@{'/updatetask/'+${task.id}}">
+                <button class="btn-updateOne">Update task</button>
+              </a>
+            </div>
+
+            <ul>
+              <li th:each="resource: ${task.resources}">
+                <span th:text="${resource.name}"></span>
+                <div class="action-buttons">
+                  <a th:href="@{'/viewoneresource/'+${resource.id}}">
+                    <button class="btn-viewOne">View resource</button>
+                  </a>
+                  <a th:href="@{'/deleteresource/'+${resource.id}}">
+                    <button class="btn-deleteOne">Delete resource</button>
+                  </a>
+                  <a th:href="@{'/updateresource/'+${resource.id}}">
+                    <button class="btn-updateOne">Update resource</button>
+                  </a>
+                </div>
+
+                <ul>
+                  <li th:each="skill: ${resource.skills}">
+                    <span th:text="${skill.name}"></span>
+                    <div class="action-buttons">
+                      <a th:href="@{'/viewoneskill/'+${skill.id}}" method="get">
+                        <button type="submit" class="btn-viewOne">View skill</button>
+                      </a>
+                      <a th:href="@{'/deleteSkill/'+${skill.id}}" method="post">
+                        <button type="submit" class="btn-deleteOne">Delete skill</button>
+                      </a>
+                      <a th:href="@{'/updateskill/'+${skill.id}}" method="get">
+                        <button type="submit" class="btn-updateOne">Update skill</button>
+                      </a>
+                    </div>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </section>
+    </article>
+  </section>
+</main>
 </body>
+
 </html>

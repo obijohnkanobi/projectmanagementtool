@@ -11,7 +11,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-// JdbcUserRepository.java
 @Repository
 public class JdbcUserRepository implements UserRepository {
 
@@ -20,7 +19,7 @@ public class JdbcUserRepository implements UserRepository {
 
     @Override
     public User findByUsername(String username) {
-        String query = "SELECT * FROM users WHERE username = ?";
+        String query = "SELECT * FROM app_users WHERE username = ?";
         try (Connection connection = dataSource.getConnection();
              PreparedStatement statement = connection.prepareStatement(query)) {
             statement.setString(1, username);
@@ -29,8 +28,19 @@ public class JdbcUserRepository implements UserRepository {
                     User user = new User();
                     user.setUsername(resultSet.getString("username"));
                     user.setPassword(resultSet.getString("password"));
-                    // Her indstilles UserRole, baseret på data i databasen
-                    user.setRole(UserRole.valueOf(resultSet.getString("role")));
+                    String roleValue = resultSet.getString("role");
+                    if (roleValue == null) {
+                        // Handle NULL role here by setting a default role
+                        user.setRole(UserRole.USER);
+                    } else {
+                        // Convert the role value to the UserRole enum
+                        try {
+                            user.setRole(UserRole.valueOf(roleValue.toUpperCase()));
+                        } catch (IllegalArgumentException e) {
+                            // Handle invalid role value here (e.g., log an error or set default role)
+                            user.setRole(UserRole.USER);
+                        }
+                    }
                     return user;
                 }
             }

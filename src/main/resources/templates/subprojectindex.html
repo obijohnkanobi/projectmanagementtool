@@ -31,7 +31,6 @@
 
 <a href="/createsubproject">
   <button class="btn-create btn" id="btn-create">Create a new subproject</button>
-
 </a>
 
 <table>
@@ -53,7 +52,7 @@
     <td th:text="${subproject.endDate}"/>
     <td th:text="${subproject.projectId}"/>
     <td>
-      <a th:href="@{'/viewSubProject/'+${subproject.id}}">
+      <a th:href="@{'/viewonesubproject/'+${subproject.id}}">
         <button class="btn-viewOne" id="btn-viewOne">View subproject</button>
       </a>
       <a th:href="@{'/deleteSubProject/'+${subproject.id}}">
