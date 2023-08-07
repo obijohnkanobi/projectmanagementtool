@@ -6,8 +6,8 @@
   <title>Update Task</title>
   <link rel="stylesheet" type="text/css" href="/static/mycss.css">
   <link rel="stylesheet" type="text/css" href="/static/topnavbar.css">
-
 </head>
+
 <body>
 <ul>
   <li><a href="/index">Home</a></li>
@@ -26,15 +26,15 @@
   </li>
 </ul>
 <h1>Update Task</h1>
-
 <form action="/tasks/updateTask" method="post">
   <input type="hidden" name="id" th:value="${task.id}">
   <input type="text" name="name" th:value="${task.name}">
   <input type="date" name="startDate" th:value="${task.startDate}">
   <input type="date" name="endDate" th:value="${task.endDate}">
   <input type="number" name="estimatedHours" th:value="${task.estimatedHours}">
-  <input type="number" name="subprojectId" th:value="${task.subprojectId}">
+  <input type="number" name="subprojectId" th:value="${task.subProject.id}">
   <input type="submit" value="Save changes" class="btn" id="btn-updateOne">
 </form>
 </body>
+
 </html>

@@ -1,9 +1,8 @@
 package com.example.projectmanagementtool.controller;
 
-import com.example.projectmanagementtool.models.Project;
 import com.example.projectmanagementtool.models.Task;
-import com.example.projectmanagementtool.repositories.ProjectRepository;
 import com.example.projectmanagementtool.repositories.TaskRepository;
+import com.example.projectmanagementtool.repositories.ProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -47,7 +46,7 @@ public class TaskController {
         return "viewonetask";
     }
 
-    @GetMapping("/tasks/deleteOne/{id}")
+    @GetMapping("/deleteOne/{id}")
     public String deleteOne(@PathVariable("id") int id){
         boolean deleted = taskService.deleteTask(id);
         if (deleted){

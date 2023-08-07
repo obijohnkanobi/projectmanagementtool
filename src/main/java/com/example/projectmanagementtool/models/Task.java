@@ -1,25 +1,40 @@
 package com.example.projectmanagementtool.models;
+
+import javax.persistence.*;
 import java.util.Date;
 
+@Entity
+@Table(name = "tasks") // Maps to the "tasks" table in the database
 public class Task {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+
     private String name;
     private Date startDate;
     private Date endDate;
-    private int estimatedHours;
-    private int subprojectId;
+    private boolean isPending;
+    private int estimatedHours; // Adding the estimatedHours property
+
+    @ManyToOne
+    @JoinColumn(name = "fk_subproject_id") // This represents the foreign key in the "tasks" table
+    private SubProject subProject;
+
+    // Constructors, getters, and setters...
 
     public Task() {
     }
 
-    public Task(int id, String name, Date startDate, Date endDate, int estimatedHours, int subprojectId) {
+    public Task(int id, String name, Date startDate, Date endDate, boolean isPending, int estimatedHours) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.isPending = isPending;
         this.estimatedHours = estimatedHours;
-        this.subprojectId = subprojectId;
     }
+
+    // Getters and setters for properties...
 
     public int getId() {
         return id;
@@ -53,6 +68,14 @@ public class Task {
         this.endDate = endDate;
     }
 
+    public boolean isPending() {
+        return isPending;
+    }
+
+    public void setPending(boolean pending) {
+        isPending = pending;
+    }
+
     public int getEstimatedHours() {
         return estimatedHours;
     }
@@ -61,11 +84,11 @@ public class Task {
         this.estimatedHours = estimatedHours;
     }
 
-    public int getSubprojectId() {
-        return subprojectId;
+    public SubProject getSubProject() {
+        return subProject;
     }
 
-    public void setSubprojectId(int subprojectId) {
-        this.subprojectId = subprojectId;
+    public void setSubProject(SubProject subProject) {
+        this.subProject = subProject;
     }
 }

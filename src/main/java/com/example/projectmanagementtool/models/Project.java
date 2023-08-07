@@ -1,16 +1,23 @@
 package com.example.projectmanagementtool.models;
 
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
+@Entity
 public class Project {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String name;
     private Date startDate;
     private Date endDate;
+
+    // One-to-Many relationship with SubProject
+    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<SubProject> subProjects;
 
-    // Constructors, getters, and setters
+    // Constructors, getters, and setters...
 
     public Project() {
     }
@@ -21,6 +28,8 @@ public class Project {
         this.startDate = startDate;
         this.endDate = endDate;
     }
+
+    // Getters and setters for properties...
 
     public int getId() {
         return id;
@@ -54,10 +63,10 @@ public class Project {
         this.endDate = endDate;
     }
 
-
     public List<SubProject> getSubProjects() {
         return subProjects;
     }
+
     public void setSubProjects(List<SubProject> subProjects) {
         this.subProjects = subProjects;
     }

@@ -1,7 +1,5 @@
 package com.example.projectmanagementtool.models;
 
-import org.springframework.data.annotation.Id;
-
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
@@ -84,12 +82,5 @@ public class SubProject {
 
     public void setProject(Project project) {
         this.project = project;
-    }
-    public List<Task> getTasks() {
-        return tasks;
-    }
-
-    public void setTasks(List<Task> tasks) {
-        this.tasks = tasks;
     }
 }

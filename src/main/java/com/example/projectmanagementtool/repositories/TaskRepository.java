@@ -15,27 +15,27 @@ public class TaskRepository {
     JdbcTemplate template;
 
     public List<Task> fetchAll(){
-        String sql = "SELECT * FROM Tasks";
+        String sql = "SELECT * FROM tasks"; // Update the table name to lowercase "tasks"
         return template.query(sql, new BeanPropertyRowMapper<>(Task.class));
     }
 
     public void addTask(Task task){
-        String sql = "INSERT INTO Tasks (name, start_date, end_date, estimated_hours, subproject_id) VALUES (?, ?, ?, ?, ?)";
-        template.update(sql, task.getName(), task.getStartDate(), task.getEndDate(), task.getEstimatedHours(), task.getSubprojectId());
+        String sql = "INSERT INTO tasks (name, start_date, end_date, is_pending, estimated_hours, fk_subproject_id) VALUES (?, ?, ?, ?, ?, ?)";
+        template.update(sql, task.getName(), task.getStartDate(), task.getEndDate(), task.isPending(), task.getEstimatedHours(), task.getSubProject().getId()); // Corrected method call
     }
 
     public Task findTaskById(int id){
-        String sql = "SELECT * FROM Tasks WHERE id = ?";
+        String sql = "SELECT * FROM tasks WHERE id = ?";
         return template.queryForObject(sql, new BeanPropertyRowMapper<>(Task.class), id);
     }
 
     public Boolean deleteTask(int id){
-        String sql = "DELETE FROM Tasks WHERE id = ?";
+        String sql = "DELETE FROM tasks WHERE id = ?";
         return template.update(sql, id) > 0;
     }
 
     public void updateTask(int id, Task task){
-        String sql = "UPDATE Tasks SET name = ?, start_date = ?, end_date = ?, estimated_hours = ?, subproject_id = ? WHERE id = ?";
-        template.update(sql, task.getName(), task.getStartDate(), task.getEndDate(), task.getEstimatedHours(), task.getSubprojectId(), id);
+        String sql = "UPDATE tasks SET name = ?, start_date = ?, end_date = ?, is_pending = ?, estimated_hours = ?, fk_subproject_id = ? WHERE id = ?";
+        template.update(sql, task.getName(), task.getStartDate(), task.getEndDate(), task.isPending(), task.getEstimatedHours(), task.getSubProject().getId(), id); // Corrected method call
     }
 }

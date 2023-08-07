@@ -38,7 +38,7 @@ tr:hover {background-color: coral;}
 #btn-updateOne {
     background-color: #75afe5;
 }
-/*body {
+body {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -47,13 +47,8 @@ tr:hover {background-color: coral;}
     padding: 0;
     background-color: #b8d2af;
     color: #333333;
-    font-family: Arial, sans-serif;
-}*/
-/*.container {
+    font-family: Arial, sans-serif;}
+
+.container {
     width: 90%;
-    max-width: 1200px;
-}*/
-
-
-
-
+    max-width: 1200px;}

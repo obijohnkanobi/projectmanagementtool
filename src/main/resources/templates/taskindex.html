@@ -4,11 +4,11 @@
 <head>
   <meta charset="UTF-8">
   <title>Task Dashboard</title>
-  <link rel="stylesheet" type="text/css" href="/static/mycss.css">
-  <link rel="stylesheet" type="text/css" href="/static/topnavbar.css">
-
+  <link rel="stylesheet" type="text/css" th:href="@{/mycss.css}">
+  <link rel="stylesheet" type="text/css" th:href="@{/topnavbar.css}">
 
 </head>
+
 <body>
 <ul>
   <li><a href="/index">Home</a></li>
@@ -46,20 +46,21 @@
   </thead>
   <tbody>
   <tr th:each="task: ${tasks}">
-    <td th:text="${task.id}"/>
-    <td th:text="${task.name}"/>
-    <td th:text="${task.startDate}"/>
-    <td th:text="${task.endDate}"/>
-    <td th:text="${task.estimatedHours}"/>
-    <td th:text="${task.subprojectId}"/>
+    <td th:text="${task.id}"></td>
+    <td th:text="${task.name}"></td>
+    <td th:text="${task.startDate}"></td>
+    <td th:text="${task.endDate}"></td>
+    <td th:text="${task.estimatedHours}"></td>
+    <td th:if="${task.subProject != null}" th:text="${task.subProject.id}"></td>
+    <td th:unless="${task.subProject != null}">No SubProject</td>
     <td>
-      <a th:href="@{'/viewonetask'+${task.id}}">
+      <a th:href="@{'/viewonetask/'+${task.id}}">
         <button class="btn-viewOne" id="btn-viewOne">View task</button>
       </a>
-      <a th:href="@{'/deleteOne'+${task.id}}">
+      <a th:href="@{'/deleteOne/'+${task.id}}">
         <button class="btn-deleteOne" id="btn-deleteOne">Delete task</button>
       </a>
-      <a th:href="@{'/updatetask'+${task.id}}">
+      <a th:href="@{'/updatetask/'+${task.id}}">
         <button class="btn-updateOne" id="btn-updateOne">Update task</button>
       </a>
     </td>
@@ -67,4 +68,5 @@
   </tbody>
 </table>
 </body>
+
 </html>

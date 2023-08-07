@@ -3,9 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <title>Dashboard</title>
-  <link rel="stylesheet" type="text/css" href="/static/mycss.css">
-  <link rel="stylesheet" type="text/css" href="/static/topnavbar.css">
-
+  <link rel="stylesheet" type="text/css" href="static/mycss.css">
+  <link rel="stylesheet" type="text/css" href="static/topnavbar.css">
 </head>
 <body>
 <ul>
@@ -25,7 +24,7 @@
   </li>
 </ul>
 
-<h1>Project list</h1>
+<h1>Welcome to project overview</h1>
 
 <div th:each="project: ${projects}">
   <h2 th:text="${project.name}"></h2>
@@ -43,7 +42,7 @@
   </a>
 
   <h3>Subprojects:</h3>
-  <div th:each="subproject: ${project.subproject}">
+  <div th:each="subproject: ${project.subProjects}">
     <h4 th:text="${subproject.name}"></h4>
 
     <!-- Subproject actions -->
@@ -62,13 +61,13 @@
       <p th:text="${task.name}"></p>
 
       <!-- Task actions -->
-      <a th:href="@{'/viewonetask'+${task.id}}">
+      <a th:href="@{'/viewonetask/'+${task.id}}">
         <button>View task</button>
       </a>
       <a th:href="@{'/deleteone/'+${task.id}}">
         <button>Delete task</button>
       </a>
-      <a th:href="@{'/updatetask'+${task.id}}">
+      <a th:href="@{'/updatetask/'+${task.id}}">
         <button>Update task</button>
       </a>
 
@@ -77,7 +76,7 @@
         <li th:each="resource: ${task.resources}">
           <!-- Resource details and actions -->
           <span th:text="${resource.name}"></span>
-          <a th:href="@{'/viewoneresource'+${resource.id}}">
+          <a th:href="@{'/viewoneresource/'+${resource.id}}">
             <button>View resource</button>
           </a>
           <a th:href="@{'/resources/deleteone/'+${resource.id}}">
@@ -92,7 +91,7 @@
             <li th:each="skill: ${resource.skills}">
               <!-- Skill details and actions -->
               <span th:text="${skill.name}"></span>
-              <a th:href="@{'/viewoneskill'+${skill.id}}">
+              <a th:href="@{'/viewoneskill/'+${skill.id}}">
                 <button>View skill</button>
               </a>
               <a th:href="@{'/deleteSkill/'+${skill.id}}">

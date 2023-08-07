@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Update Task Resource</title>
+</head>
+<body>
+<h1>Update Task Resource</h1>
+<form action="/taskresources/update/{id}" method="post">
+    <input type="hidden" name="id" th:value="${taskResource.id}">
+    <label for="taskId">Task ID:</label>
+    <input type="text" id="taskId" name="task.id" th:value="${taskResource.task.id}">
+    <br>
+    <label for="resourceId">Resource ID:</label>
+    <input type="text" id="resourceId" name="resource.id" th:value="${taskResource.resource.id}">
+    <br>
+    <label for="hoursAllocated">Hours Allocated:</label>
+    <input type="text" id="hoursAllocated" name="hoursAllocated" th:value="${taskResource.hoursAllocated}">
+    <br>
+    <input type="submit" value="Update Task Resource">
+</form>
+</body>
+</html>

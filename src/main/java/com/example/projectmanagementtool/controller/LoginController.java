@@ -37,4 +37,9 @@ public class LoginController {
             return "redirect:/login";
         }
     }
+    // Redirects the root URL to the login page
+    @GetMapping("/")
+    public String redirectToLoginPage() {
+        return "redirect:/login";
+    }
 }

@@ -4,10 +4,10 @@
 <head>
   <meta charset="UTF-8">
   <title>Task Details</title>
-  <link rel="stylesheet" type="text/css" href="/static/mycss.css">
-  <link rel="stylesheet" type="text/css" href="/static/topnavbar.css">
-
+  <link rel="stylesheet" type="text/css" href="static/mycss.css">
+  <link rel="stylesheet" type="text/css" href="static/topnavbar.css">
 </head>
+
 <body>
 <ul>
   <li><a href="/index">Home</a></li>
@@ -26,12 +26,12 @@
   </li>
 </ul>
 <h1>Task details</h1>
-
-<span th:text="${task.id}"/>
-<span th:text="${task.name}"/>
-<span th:text="${task.startDate}"/>
-<span th:text="${task.endDate}"/>
-<span th:text="${task.estimatedHours}"/>
-<span th:text="${task.subprojectId}"/>
+<span th:text="${task.id}"></span>
+<span th:text="${task.name}"></span>
+<span th:text="${task.startDate}"></span>
+<span th:text="${task.endDate}"></span>
+<span th:text="${task.estimatedHours}"></span>
+<span th:text="${task.subProject.id}"></span>
 </body>
+
 </html>
