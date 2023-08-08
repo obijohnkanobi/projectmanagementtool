@@ -1,4 +1,4 @@
-package com.example.projectmanagementtool.controller;
+package com.example.projectmanagementtool.controllers;
 
 import com.example.projectmanagementtool.models.Skill;
 import org.springframework.beans.factory.annotation.Autowired;

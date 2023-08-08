@@ -2,6 +2,7 @@ package com.example.projectmanagementtool.repositories;
 
 import com.example.projectmanagementtool.models.Project;
 import com.example.projectmanagementtool.models.SubProject;
+import com.example.projectmanagementtool.repositories.SubProjectRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -18,14 +19,14 @@ public class ProjectRepository {
     SubProjectRepository subProjectRepository;
 
     public List<Project> fetchAll(){
-        String sql = "SELECT * FROM projects";
+        String sql = "SELECT * FROM projects WHERE deleted = 0";
         RowMapper<Project> rowMapper = new BeanPropertyRowMapper<>(Project.class);
         return template.query(sql, rowMapper);
     }
 
     public void addProject(Project p){
-        String sql = "INSERT INTO projects (id, name, start_date, end_date) VALUES (?, ?, ?, ?)";
-        template.update(sql, p.getId(), p.getName(), p.getStartDate(), p.getEndDate());
+        String sql = "INSERT INTO projects (id, name, start_date, end_date, description) VALUES (?, ?, ?, ?, ?)";
+        template.update(sql, p.getId(), p.getName(), p.getStartDate(), p.getEndDate(), p.getDescription());
     }
 
     public Project findProjectById(int id){
@@ -40,15 +41,14 @@ public class ProjectRepository {
         return p;
     }
 
-
     public Boolean deleteProject(int id){
-        String sql = "DELETE FROM projects WHERE id = ?";
+        String sql = "UPDATE projects SET deleted = 1 WHERE id = ?";
         return template.update(sql, id) > 0;
     }
 
     public void updateProject(int id, Project p){
-        String sql = "UPDATE projects SET name = ?, start_date = ?, end_date = ? WHERE id = ?";
-        template.update(sql, p.getName(), p.getStartDate(), p.getEndDate(), p.getId());
+        String sql = "UPDATE projects SET name = ?, start_date = ?, end_date = ?, description = ? WHERE id = ?";
+        template.update(sql, p.getName(), p.getStartDate(), p.getEndDate(), p.getDescription(), p.getId());
     }
-    
+
 }

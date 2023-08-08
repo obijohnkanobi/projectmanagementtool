@@ -1,4 +1,4 @@
-package com.example.projectmanagementtool.service;
+package com.example.projectmanagementtool.services;
 
 import com.example.projectmanagementtool.models.User;
 import com.example.projectmanagementtool.repositories.UserRepository;

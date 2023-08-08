@@ -1,4 +1,4 @@
-package com.example.projectmanagementtool.controller;
+package com.example.projectmanagementtool.controllers;
 
 import com.example.projectmanagementtool.models.*;
 import com.example.projectmanagementtool.repositories.ProjectRepository;
@@ -10,7 +10,8 @@ import org.springframework.web.bind.annotation.*;
 import com.example.projectmanagementtool.services.TaskService;
 import com.example.projectmanagementtool.services.SubProjectService;
 import com.example.projectmanagementtool.services.SkillService;
-import com.example.projectmanagementtool.service.ResourceService;
+import com.example.projectmanagementtool.services.ResourceService;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpSession;
 import java.util.List;
@@ -87,19 +88,29 @@ public class ProjectController {
     }
 
     @GetMapping("/deleteproject/{id}")
-    public String deleteOne(@PathVariable("id") int id){
-        boolean deleted = projectService.deleteProject(id);
-        if (deleted){
-            return "redirect:/projectindex";
-        }else {
-            return "redirect:/projectindex";
+    public String deleteOne(@PathVariable("id") int id, RedirectAttributes redirectAttributes){
+        try {
+            boolean deleted = projectService.deleteProject(id);
+            if (deleted) {
+                redirectAttributes.addFlashAttribute("successMessage", "Project deleted successfully.");
+            } else {
+                redirectAttributes.addFlashAttribute("errorMessage", "Project could not be deleted.");
+            }
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error while deleting project.");
         }
+        return "redirect:/projectindex";
     }
 
     @GetMapping("/updateproject/{id}")
-    public String updateOne(@PathVariable("id") int id, Model model){
-        model.addAttribute("project", projectService.findProjectById(id));
-        return "updateproject";
+    public String updateOne(@PathVariable("id") int id, Model model, RedirectAttributes redirectAttributes){
+        try {
+            model.addAttribute("project", projectService.findProjectById(id));
+            return "updateproject";
+        } catch (Exception e) {
+            redirectAttributes.addFlashAttribute("errorMessage", "Error fetching project details.");
+            return "redirect:/projectindex";
+        }
     }
 
     @PostMapping("/updateproject")

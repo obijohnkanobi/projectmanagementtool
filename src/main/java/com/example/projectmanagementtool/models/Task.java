@@ -1,40 +1,31 @@
 package com.example.projectmanagementtool.models;
 
-import javax.persistence.*;
-import java.util.Date;
+import com.example.projectmanagementtool.models.SubProject;
 
-@Entity
-@Table(name = "tasks") // Maps to the "tasks" table in the database
+import java.time.LocalDateTime;
+
 public class Task {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
-
     private String name;
-    private Date startDate;
-    private Date endDate;
-    private boolean isPending;
-    private int estimatedHours; // Adding the estimatedHours property
-
-    @ManyToOne
-    @JoinColumn(name = "fk_subproject_id") // This represents the foreign key in the "tasks" table
+    private LocalDateTime startDate;
+    private LocalDateTime endDate;
+    private boolean isPendingApproval; // Renamed field
+    private int estimatedHours;
     private SubProject subProject;
 
-    // Constructors, getters, and setters...
-
-    public Task() {
-    }
-
-    public Task(int id, String name, Date startDate, Date endDate, boolean isPending, int estimatedHours) {
+    public Task(int id, String name, LocalDateTime startDate, LocalDateTime endDate, boolean isPendingApproval, int estimatedHours, SubProject subProject) { // Renamed parameter
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.isPending = isPending;
+        this.isPendingApproval = isPendingApproval; // Updated assignment
         this.estimatedHours = estimatedHours;
+        this.subProject = subProject;
     }
 
-    // Getters and setters for properties...
+    public Task() {
+    }
 
     public int getId() {
         return id;
@@ -52,28 +43,28 @@ public class Task {
         this.name = name;
     }
 
-    public Date getStartDate() {
+    public LocalDateTime getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDateTime startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDateTime getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDateTime endDate) {
         this.endDate = endDate;
     }
 
-    public boolean isPending() {
-        return isPending;
+    public boolean isPendingApproval() {
+        return isPendingApproval;
     }
 
-    public void setPending(boolean pending) {
-        isPending = pending;
+    public void setPendingApproval(boolean pendingApproval) {
+        isPendingApproval = pendingApproval;
     }
 
     public int getEstimatedHours() {

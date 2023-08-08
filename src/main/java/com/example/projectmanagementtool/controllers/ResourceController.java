@@ -1,7 +1,7 @@
-package com.example.projectmanagementtool.controller;
+package com.example.projectmanagementtool.controllers;
 
 import com.example.projectmanagementtool.models.Resource;
-import com.example.projectmanagementtool.service.ResourceService;
+import com.example.projectmanagementtool.services.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

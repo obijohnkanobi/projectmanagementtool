@@ -1,31 +1,18 @@
 package com.example.projectmanagementtool.models;
 
-import javax.persistence.*;
-
-@Entity
-@Table(name = "Task_Resources")
 public class TaskResource {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-
-    @ManyToOne
-    @JoinColumn(name = "task_id")
-    private Task task;
-
-    @ManyToOne
-    @JoinColumn(name = "resource_id")
-    private Resource resource;
-
+    private int taskId;
+    private int resourceId;
     private int hoursAllocated;
 
     public TaskResource() {
     }
 
-    public TaskResource(int id, Task task, Resource resource, int hoursAllocated) {
+    public TaskResource(int id, int taskId, int resourceId, int hoursAllocated) {
         this.id = id;
-        this.task = task;
-        this.resource = resource;
+        this.taskId = taskId;
+        this.resourceId = resourceId;
         this.hoursAllocated = hoursAllocated;
     }
 
@@ -37,20 +24,20 @@ public class TaskResource {
         this.id = id;
     }
 
-    public Task getTask() {
-        return task;
+    public int getTaskId() {
+        return taskId;
     }
 
-    public void setTask(Task task) {
-        this.task = task;
+    public void setTaskId(int taskId) {
+        this.taskId = taskId;
     }
 
-    public Resource getResource() {
-        return resource;
+    public int getResourceId() {
+        return resourceId;
     }
 
-    public void setResource(Resource resource) {
-        this.resource = resource;
+    public void setResourceId(int resourceId) {
+        this.resourceId = resourceId;
     }
 
     public int getHoursAllocated() {

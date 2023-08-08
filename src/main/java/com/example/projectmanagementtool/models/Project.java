@@ -1,35 +1,29 @@
 package com.example.projectmanagementtool.models;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
-@Entity
 public class Project {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     private int id;
     private String name;
     private Date startDate;
     private Date endDate;
+    private String description;  // Added this based on your SQL schema
+    private boolean deleted;     // Added this for soft delete functionality
 
-    // One-to-Many relationship with SubProject
-    @OneToMany(mappedBy = "project", cascade = CascadeType.ALL)
     private List<SubProject> subProjects;
-
-    // Constructors, getters, and setters...
 
     public Project() {
     }
 
-    public Project(int id, String name, Date startDate, Date endDate) {
+    public Project(int id, String name, Date startDate, Date endDate, String description) {
         this.id = id;
         this.name = name;
         this.startDate = startDate;
         this.endDate = endDate;
+        this.description = description; // Initializing the new attribute
     }
-
-    // Getters and setters for properties...
 
     public int getId() {
         return id;
@@ -61,6 +55,22 @@ public class Project {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
     }
 
     public List<SubProject> getSubProjects() {
