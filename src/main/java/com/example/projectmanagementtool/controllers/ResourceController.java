@@ -1,5 +1,6 @@
 package com.example.projectmanagementtool.controllers;
 
+import com.example.projectmanagementtool.exceptions.ResourceNotFoundException;
 import com.example.projectmanagementtool.models.Resource;
 import com.example.projectmanagementtool.services.ResourceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,11 +38,17 @@ public class ResourceController {
 
     @GetMapping("/viewoneresource/{id}")
     public String viewOne(@PathVariable("id") int id, Model model){
-        model.addAttribute("resource", resourceService.findResourceById(id));
-        return "viewoneresource";
+        try {
+            model.addAttribute("resource", resourceService.findResourceById(id));
+            return "viewoneresource";
+        } catch (ResourceNotFoundException e) {
+            model.addAttribute("errorMessage", "Resource not found");
+            return "errorPage"; // or redirect them to another appropriate page
+        }
     }
 
-    @GetMapping("/deleteresource/{id}")
+
+    @PostMapping("/deleteresource/{id}")
     public String deleteOne(@PathVariable("id") int id){
         boolean deleted = resourceService.deleteResource(id);
         if (deleted){

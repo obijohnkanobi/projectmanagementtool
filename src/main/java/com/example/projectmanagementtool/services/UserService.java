@@ -11,11 +11,16 @@ public class UserService {
     @Autowired
     private UserRepository userRepository;
 
-    public boolean login(String username, String password) {
+    public User loginUser(String username, String password) {
         User user = userRepository.findByUsername(username);
-        if (user != null && user.getPassword().equals(password)) {
-            return true;
+
+        if (user == null) {
+            return null;  // User not found
         }
-        return false;
+
+        if (user.getPassword().equals(password)) {
+            return user;
+        }
+        return null;
     }
 }

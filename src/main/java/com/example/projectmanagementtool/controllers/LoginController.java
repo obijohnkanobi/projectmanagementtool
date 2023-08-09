@@ -1,5 +1,7 @@
 package com.example.projectmanagementtool.controllers;
 
+import com.example.projectmanagementtool.models.User;
+import com.example.projectmanagementtool.models.UserRole;
 import com.example.projectmanagementtool.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -26,20 +28,26 @@ public class LoginController {
                               @RequestParam("password") String password,
                               RedirectAttributes redirectAttributes,
                               HttpSession session) {
-        if (userService.login(username, password)) {
-            // Gem brugeroplysninger i sessionen
+        User user = userService.loginUser(username, password);
+        if (user != null) {
             session.setAttribute("username", username);
-            // Hvis login er vellykket, omdirigere til index-siden
+            session.setAttribute("userRole", user.getRole());
             return "redirect:/index";
         } else {
-            // Failed login, redirect tilbage til login-siden med en fejlmeddelelse
             redirectAttributes.addFlashAttribute("error", "Invalid username or password.");
             return "redirect:/login";
         }
+
     }
     // Redirects the root URL to the login page
     @GetMapping("/")
     public String redirectToLoginPage() {
         return "redirect:/login";
     }
+    @PostMapping("/logout")
+    public String logout(HttpSession session) {
+        session.invalidate();
+        return "redirect:/login";
+    }
+
 }

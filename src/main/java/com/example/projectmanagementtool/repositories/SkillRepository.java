@@ -14,31 +14,33 @@ public class SkillRepository {
     @Autowired
     JdbcTemplate template;
 
+    // Fetch only non-deleted skills
     public List<Skill> fetchAll(){
-        String sql = "SELECT * FROM skills";
+        String sql = "SELECT * FROM skills WHERE deleted = FALSE";
         RowMapper<Skill> rowMapper = new BeanPropertyRowMapper<>(Skill.class);
         return template.query(sql, rowMapper);
     }
 
     public void addSkill(Skill skill){
-        String sql = "INSERT INTO skills (id, name) VALUES (?, ?)";
-        template.update(sql, skill.getId(), skill.getName());
+        String sql = "INSERT INTO skills (name) VALUES (?)";  // Removed id as it's auto-generated
+        template.update(sql, skill.getName());
     }
 
     public Skill findSkillById(int id){
-        String sql = "SELECT * FROM skills WHERE id = ?";
+        String sql = "SELECT * FROM skills WHERE id = ? AND deleted = FALSE";
         RowMapper<Skill> rowMapper = new BeanPropertyRowMapper<>(Skill.class);
-        Skill skill = template.queryForObject(sql, rowMapper, id);
-        return skill;
+        return template.queryForObject(sql, rowMapper, id);
     }
 
+    // Implement soft delete
     public Boolean deleteSkill(int id){
-        String sql = "DELETE FROM skills WHERE id = ?";
+        String sql = "UPDATE skills SET deleted = TRUE WHERE id = ?";
         return template.update(sql, id) > 0;
     }
 
     public void updateSkill(int id, Skill skill){
         String sql = "UPDATE skills SET name = ? WHERE id = ?";
-        template.update(sql, skill.getName(), skill.getId());
+        template.update(sql, skill.getName(), id);  // Changed from skill.getId() to id
     }
 }
+

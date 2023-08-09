@@ -14,31 +14,31 @@ public class ResourceRepository {
     @Autowired
     JdbcTemplate template;
 
-    public List<Resource> fetchAll(){
-        String sql = "SELECT * FROM resources";
+    public List<Resource> fetchAllNonDeleted(){
+        String sql = "SELECT * FROM resources WHERE deleted = FALSE";
         RowMapper<Resource> rowMapper = new BeanPropertyRowMapper<>(Resource.class);
         return template.query(sql, rowMapper);
     }
 
-    public void addResource(Resource r){
-        String sql = "INSERT INTO resources (id, name) VALUES (?, ?)";
-        template.update(sql, r.getId(), r.getName());
+    public void addResource(Resource r) {
+        String sql = "INSERT INTO resources (name, contact_info, profile_picture, department) VALUES (?, ?, ?, ?)";
+        template.update(sql, r.getName(), r.getContactInfo(), r.getProfilePicture(), r.getDepartment());
     }
 
-    public Resource findResourceById(int id){
+    public Resource findResourceById(int id) {
         String sql = "SELECT * FROM resources WHERE id = ?";
         RowMapper<Resource> rowMapper = new BeanPropertyRowMapper<>(Resource.class);
         Resource r = template.queryForObject(sql, rowMapper, id);
         return r;
     }
 
-    public Boolean deleteResource(int id){
-        String sql = "DELETE FROM resources WHERE id = ?";
+    public Boolean softDeleteResource(int id){
+        String sql = "UPDATE resources SET deleted = TRUE WHERE id = ?";
         return template.update(sql, id) > 0;
     }
 
     public void updateResource(int id, Resource r){
-        String sql = "UPDATE resources SET name = ? WHERE id = ?";
-        template.update(sql, r.getName(), r.getId());
+        String sql = "UPDATE resources SET name = ?, contact_info = ?, profile_picture = ?, department = ? WHERE id = ?";
+        template.update(sql, r.getName(), r.getContactInfo(), r.getProfilePicture(), r.getDepartment(), id);
     }
 }

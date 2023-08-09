@@ -12,13 +12,23 @@ public class Resource {
     private int id;
 
     private String name;
+    private String contactInfo; // New field
+    private String profilePicture; // New field
+    private String department; // New field
+    private boolean deleted; // New field
 
-    public Resource() {
-    }
+    // Standard no-argument constructor
+    public Resource() {}
 
-    public Resource(String name) {
+    public Resource(int id, String name, String contactInfo, String profilePicture, String department, boolean deleted) {
+        this.id = id;
         this.name = name;
+        this.contactInfo = contactInfo;
+        this.profilePicture = profilePicture;
+        this.department = department;
+        this.deleted = deleted;
     }
+    // Getters and setters for all fields...
 
     public int getId() {
         return id;
@@ -35,4 +45,39 @@ public class Resource {
     public void setName(String name) {
         this.name = name;
     }
+
+    public String getContactInfo() {
+        return contactInfo;
+    }
+
+    public void setContactInfo(String contactInfo) {
+        this.contactInfo = contactInfo;
+    }
+
+    public String getProfilePicture() {
+        return profilePicture;
+    }
+
+    public void setProfilePicture(String profilePicture) {
+        this.profilePicture = profilePicture;
+    }
+
+    public String getDepartment() {
+        return department;
+    }
+
+    public void setDepartment(String department) {
+        this.department = department;
+    }
+
+    public boolean isDeleted() {
+        return deleted;
+    }
+
+    public void setDeleted(boolean deleted) {
+        this.deleted = deleted;
+    }
+
+
+    // Add getters and setters for the new fields
 }
