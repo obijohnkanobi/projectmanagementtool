@@ -5,6 +5,23 @@
     <title>Task Resources</title>
 </head>
 <body>
+<ul>
+    <li><a th:href="@{/index}">Home</a></li>
+    <li><a th:href="@{/projectindex}">Projects</a></li>
+    <li><a th:href="@{/resourceindex}">Resources</a></li>
+    <li><a th:href="@{/skillindex}">Skills</a></li>
+    <li><a th:href="@{/subprojectindex}">Subprojects</a></li>
+    <li><a th:href="@{/taskindex}">Tasks</a></li>
+    <li class="dropdown">
+        <a href="javascript:void(0)" class="dropbtn">About</a>
+        <div class="dropdown-content">
+            <a th:href="@{/aboutus.html}">About Us</a>
+            <a th:href="@{/contact.html}">Contact</a>
+            <a th:href="@{/faq.html}">FAQ</a>
+        </div>
+    </li>
+</ul>
+
 <h1>Task Resources</h1>
 <table>
     <thead>

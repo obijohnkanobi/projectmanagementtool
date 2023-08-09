@@ -14,6 +14,7 @@ tr:nth-child(even){
     background-color: lightgray;
 }
 tr:hover {background-color: coral;}
+
 .btn {
     border: none;
     color: #090b0c;
@@ -22,33 +23,67 @@ tr:hover {background-color: coral;}
     background-color: #A8DADC;
     border-radius: 8px;
 }
+
 .btn:hover {
     box-shadow: 2px 2px 2px #888888;
 }
-#btn-create {
+
+.btn-create {
     margin-bottom: 10px;
     background-color: #a7d996;
 }
-#btn-viewOne {
+
+.btn-viewOne {
     background-color: #39a478;
 }
-#btn-deleteOne {
+
+.btn-deleteOne {
     background-color: #cb4747;
 }
-#btn-updateOne {
+
+.btn-updateOne {
     background-color: #75afe5;
 }
+
 body {
-    /*display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    margin: 0;
-    padding: 0;*/
     background-color: #b8d2af;
     color: #333333;
-    font-family: Arial, sans-serif;}
+    font-family: Arial, sans-serif;
+}
 
-/*.container {
-    width: 90%;
-    max-width: 1200px;}*/
+.project-card,
+.subproject-card,
+.task-card,
+.resource-card,
+.skill-card {
+    padding: 1em;
+    margin-bottom: 1em;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+}
+
+details {
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    padding: .5em .5em 0;
+    margin-bottom: 1em;
+}
+
+summary {
+    font-weight: bold;
+    cursor: pointer;
+}
+
+summary::-webkit-details-marker {
+    display: none;
+}
+
+summary:before {
+    content: '►';
+    padding-right: 5px;
+}
+
+details[open] > summary:before {
+    content: '▼';
+}

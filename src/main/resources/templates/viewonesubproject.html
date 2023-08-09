@@ -10,27 +10,28 @@
 </head>
 <body>
 <ul>
-  <li><a href="/index">Home</a></li>
-  <li><a href="/projectindex">Projects</a></li>
-  <li><a href="/resourceindex">Resources</a></li>
-  <li><a href="/skillindex">Skills</a></li>
-  <li><a href="/subprojectindex">Subprojects</a></li>
-  <li><a href="/taskindex">Tasks</a></li>
+  <li><a th:href="@{/index}">Home</a></li>
+  <li><a th:href="@{/projectindex}">Projects</a></li>
+  <li><a th:href="@{/resourceindex}">Resources</a></li>
+  <li><a th:href="@{/skillindex}">Skills</a></li>
+  <li><a th:href="@{/subprojectindex}">Subprojects</a></li>
+  <li><a th:href="@{/taskindex}">Tasks</a></li>
   <li class="dropdown">
     <a href="javascript:void(0)" class="dropbtn">About</a>
     <div class="dropdown-content">
-      <a href="aboutus">About Us</a>
-      <a href="contact">Contact</a>
-      <a href="faq">FAQ</a>
+      <a th:href="@{/aboutus.html}">About Us</a>
+      <a th:href="@{/contact.html}">Contact</a>
+      <a th:href="@{/faq.html}">FAQ</a>
     </div>
   </li>
 </ul>
+
 <h1>SubProject details</h1>
 
-<span th:text="${subproject.id}"/>
-<span th:text="${subproject.name}"/>
-<span th:text="${subproject.startDate}"/>
-<span th:text="${subproject.endDate}"/>
-<span th:text="${subproject.projectId}"/>
+<strong><span th:text="${subproject.id}"/></strong><br>
+<strong><span th:text="${subproject.name}"/></strong><br>
+<strong><span th:text="${subproject.startDate}"/></strong><br>
+<strong><span th:text="${subproject.endDate}"/></strong><br>
+<strong><span th:text="${subproject.projectId}"/></strong><br>
 </body>
 </html>
